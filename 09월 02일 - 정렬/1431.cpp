@@ -8,17 +8,20 @@
 
 using namespace std;
 
-int sumNum(string s) {
+int count(string s) {
     int ans = 0;
-    for(int i=0; i<s.size(); i++)
-        if(s[i] >= '0' && s[i] <= '9') ans += s[i]-'0';
+    for(int i=0; i<s.size(); i++) {
+        if(isdigit(s[i])) {
+            ans += s[i]-'0';
+        }
+    }
     return ans;
 }
 
 bool cmp(string a, string b) {
     if(a.size() != b.size()) return a.size() < b.size();
-    if(sumNum(a) != sumNum(b)) return sumNum(a) < sumNum(b);
-    else return a < b;
+    if(count(a) != count(b)) return count(a) < count(b);
+    return a < b;
 }
 
 int main() {

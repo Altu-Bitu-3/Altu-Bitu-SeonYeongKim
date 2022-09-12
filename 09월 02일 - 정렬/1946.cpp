@@ -8,8 +8,17 @@
 
 using namespace std;
 
-bool cmp(pair<int,int> a, pair<int,int> b) {
-    return a.first < b.first;
+typedef pair<int, int> p;
+
+int cnt(int n, vector<p> v) {
+    int highest = v[0].second, pass = 1;
+    for(int i=1; i<n; i++) {
+        if(highest > v[i].second) {
+            highest = v[i].second;
+            pass++;
+        }
+    }
+    return pass;
 }
 
 int main() {
@@ -20,20 +29,16 @@ int main() {
         int n;
         cin >> n;
         
-        vector<pair<int, int>> v(n);
-        for(int i=0; i<n; i++) cin >> v[i].first >> v[i].second;
-        
-        sort(v.begin(), v.end(), cmp); // 서류 성적순으로 정렬
-        
-        int tmp = n+1, pass = 0;
+        vector<p> v(n);
         for(int i=0; i<n; i++) {
-            if(tmp > v[i].second) {
-                tmp = v[i].second;
-                pass++;
-            }
+            cin >> v[i].first >> v[i].second;
         }
         
-        cout << pass << "\n";
+        sort(v.begin(), v.end()); // 서류 성적순으로 정렬
+        
+        int ans = cnt(n, v);
+        
+        cout << ans << "\n";
     }
     
     return 0;

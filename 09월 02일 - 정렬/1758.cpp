@@ -8,8 +8,13 @@
 
 using namespace std;
 
-bool cmp(int a, int b) {
-    return a > b;
+long long int cal_tip(int n, vector<long long int> v) {
+    long long int tip = 0;
+    for(int i=0; i<n; i++) {
+        long long int tmp = v[i] - i;
+        if(tmp>=0) tip += tmp;
+    }
+    return tip;
 }
 
 int main() {
@@ -19,16 +24,9 @@ int main() {
     vector<long long int> v(n);
     for(int i=0; i<n; i++) cin >> v[i];
     
-    sort(v.begin(), v.end(), cmp);
+    sort(v.begin(), v.end(), greater<>());
     
-    long long int tip = 0;
-    for(int i=0; i<n; i++) {
-        long long int tmp = v[i] - i;
-        if(tmp<0) tmp = 0;
-        tip += tmp;
-    }
-    
-    cout << tip;
+    cout << cal_tip(n, v);
     
     return 0;
 }

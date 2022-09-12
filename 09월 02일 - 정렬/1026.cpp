@@ -8,10 +8,6 @@
 
 using namespace std;
 
-bool desc(int a, int b) {
-    return a > b;
-}
-
 int main() {
     int n;
     cin >> n;
@@ -21,7 +17,7 @@ int main() {
     for(int i=0; i<n; i++) cin >> b[i];
     
     sort(a.begin(), a.end());
-    sort(b.begin(), b.end(), desc);
+    sort(b.begin(), b.end(), greater<>());
     
     int s = 0;
     for(int i=0; i<n; i++) s += a[i]*b[i];
